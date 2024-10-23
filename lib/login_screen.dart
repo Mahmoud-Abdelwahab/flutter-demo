@@ -66,6 +66,17 @@ var passwordText = TextEditingController();
                 style: TextStyle(color: Colors.white),
               ),
               ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Don\'t have an account?"),
+                TextButton(onPressed: (){
+                  print("Create account");
+                },
+                    child: Text("Register Now")
+                )
+              ],
             )
           ],
         ),
