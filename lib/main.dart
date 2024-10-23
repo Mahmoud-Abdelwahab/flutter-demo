@@ -10,22 +10,8 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: LoginScreen(),
-      // home: Scaffold(
-      //   appBar: AppBar(
-      //     title: Text("Hello mahmoud 1"),
-      //     backgroundColor: Colors.green,
-      //     leading: IconButton(
-      //         onPressed: onButtonPreesed, icon: Icon(Icons.ice_skating)),
-      //   ),
-      //   body: Text("Hello mahmoud"),
-      // ),
-    //  title: "Mahmoudddz",
+    return const MaterialApp(
+      home: MessengerView(),
     );
-  }
-
-  void onButtonPreesed() {
-    print("Button Clicked");
   }
 }

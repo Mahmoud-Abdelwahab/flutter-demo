@@ -17,7 +17,7 @@ var passwordText = TextEditingController();
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "Login",
                   style: TextStyle(
                     fontSize: 45,
