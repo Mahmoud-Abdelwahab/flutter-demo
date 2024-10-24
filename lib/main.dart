@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MessengerView(),
     );
   }
