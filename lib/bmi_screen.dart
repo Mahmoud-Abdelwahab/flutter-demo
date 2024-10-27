@@ -1,6 +1,8 @@
 import 'dart:ffi';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/bmi_result.dart';
 
 class BmiScreen extends StatefulWidget {
   const BmiScreen({super.key});
@@ -260,8 +262,16 @@ class _BmiScreenState extends State<BmiScreen> {
           Container(
             width: double.infinity,
             child: MaterialButton(onPressed: (){
+              double result =  weight / pow(height/100, 2);
              Navigator.push(context,
-               N
+              MaterialPageRoute(
+                  builder: (context) => BmiResult(
+                      age: age,
+                      result: categorizeBMI(),
+                      isMale: isMale,
+                      height: height,
+                      weight: weight)
+              )
              );
             },
               height: 48,
@@ -278,5 +288,23 @@ class _BmiScreenState extends State<BmiScreen> {
         ],
       ),
     );
+  }
+
+  String categorizeBMI() {
+    double bmiResult = weight / pow(height / 100, 2);
+
+    if (bmiResult < 18.5) {
+      return "Underweight";
+    } else if (bmiResult < 24.9) {
+      return "Normal weight";
+    } else if (bmiResult < 29.9) {
+      return "Overweight";
+    } else if (bmiResult < 34.9) {
+      return "Obesity (Class 1)";
+    } else if (bmiResult < 39.9) {
+      return "Obesity (Class 2)";
+    } else {
+      return "Obesity (Class 3)";
+    }
   }
 }
