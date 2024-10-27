@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class BmiScreen extends StatefulWidget {
@@ -10,6 +12,7 @@ class BmiScreen extends StatefulWidget {
 class _BmiScreenState extends State<BmiScreen> {
   bool isMale = true;
   int age = 20;
+  double height = 120.0;
   int weight = 80;
   @override
   Widget build(BuildContext context) {
@@ -25,27 +28,34 @@ class _BmiScreenState extends State<BmiScreen> {
             child: Row(
               children: [
                 Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.male,
-                          size: 80,
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          "MALE",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 30),
-                        ),
-                      ],
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isMale = true;
+                      });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: isMale ? Colors.grey[300] : Colors.lightBlueAccent,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.male,
+                            size: 80,
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            "MALE",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 30),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -53,27 +63,34 @@ class _BmiScreenState extends State<BmiScreen> {
                   width: 16,
                 ),
                 Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.female,
-                          size: 80,
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          "FEMALE",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 30),
-                        ),
-                      ],
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        isMale = false;
+                      });
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: isMale ?  Colors.lightBlueAccent : Colors.grey[300],
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.female,
+                            size: 80,
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Text(
+                            "FEMALE",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 30),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -96,13 +113,13 @@ class _BmiScreenState extends State<BmiScreen> {
                     style:
                     TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: [
                       Text(
-                        "180",
+                        '${height.round()}',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 28),
                       ),
@@ -115,11 +132,13 @@ class _BmiScreenState extends State<BmiScreen> {
                   ),
                   Slider(
                       inactiveColor: Colors.grey[100],
-                      value: 120,
+                      value: height,
                       max: 220,
                       min: 80,
                       onChanged: (value) {
-                        print(value.round());
+                        setState(() {
+                          height = value;
+                        });
                       }),
                 ],
               ),
@@ -145,8 +164,8 @@ class _BmiScreenState extends State<BmiScreen> {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 28),
                             ),
-                            const Text(
-                              "180",
+                             Text(
+                              "${weight.round()}",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 30),
                             ),
@@ -154,17 +173,28 @@ class _BmiScreenState extends State<BmiScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 FloatingActionButton(
-                                  onPressed: (){},
+                                  onPressed: (){
+                                    setState(() {
+                                      weight--;
+                                    });
+                                  },
                                   mini: true,
                                   child: Icon(Icons.remove),
+                                  heroTag: "weight-",
                                 ),
                                 const SizedBox(
                                   width: 10,
                                 ),
                                 FloatingActionButton(
-                                  onPressed: (){},
+                                  onPressed: (){
+                                    setState(() {
+
+                                    });
+                                    weight++;
+                                  },
                                   mini: true,
                                   child: Icon(Icons.add),
+                                  heroTag: "weight+",
                                 ),
                               ],
                             ),
@@ -189,8 +219,8 @@ class _BmiScreenState extends State<BmiScreen> {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 28),
                             ),
-                            const Text(
-                              "180",
+                             Text(
+                              "${age}",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 30),
                             ),
@@ -198,17 +228,23 @@ class _BmiScreenState extends State<BmiScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 FloatingActionButton(
-                                  onPressed: (){},
+                                  onPressed: (){
+                                    age--;
+                                  },
                                   mini: true,
-                                  child: Icon(Icons.exposure_minus_1),
+                                  child: Icon(Icons.remove),
+                                  heroTag: "age--",
                                 ),
                                 const SizedBox(
                                   width: 10,
                                 ),
                                 FloatingActionButton(
-                                  onPressed: (){},
+                                  onPressed: (){
+                                    age++;
+                                  },
                                   mini: true,
                                   child: Icon(Icons.add),
+                                  heroTag: "age++",
                                 ),
                               ],
                             ),
@@ -225,11 +261,6 @@ class _BmiScreenState extends State<BmiScreen> {
 
             },
               height: 48,
-              // padding: EdgeInsets.only(
-              //   left: 16,
-              //   right: 15,
-              //   bottom: 16
-              // ),
               color: Colors.lightBlueAccent,
             child: const Text(
                 "Confirm",
