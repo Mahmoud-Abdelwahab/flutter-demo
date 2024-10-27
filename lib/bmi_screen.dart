@@ -229,6 +229,7 @@ class _BmiScreenState extends State<BmiScreen> {
                               children: [
                                 FloatingActionButton(
                                   onPressed: (){
+                                    setState(() {});
                                     age--;
                                   },
                                   mini: true,
@@ -240,6 +241,7 @@ class _BmiScreenState extends State<BmiScreen> {
                                 ),
                                 FloatingActionButton(
                                   onPressed: (){
+                                    setState(() {});
                                     age++;
                                   },
                                   mini: true,
