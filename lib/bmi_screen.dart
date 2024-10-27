@@ -13,7 +13,7 @@ class _BmiScreenState extends State<BmiScreen> {
   bool isMale = true;
   int age = 20;
   double height = 120.0;
-  int weight = 80;
+  int weight = 60;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +36,7 @@ class _BmiScreenState extends State<BmiScreen> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: isMale ? Colors.grey[300] : Colors.lightBlueAccent,
+                        color: isMale ? Colors.lightBlueAccent : Colors.grey[300] ,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Column(
@@ -71,7 +71,7 @@ class _BmiScreenState extends State<BmiScreen> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color: isMale ?  Colors.lightBlueAccent : Colors.grey[300],
+                        color: isMale ? Colors.grey[300] : Colors.lightBlueAccent ,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Column(
@@ -260,7 +260,9 @@ class _BmiScreenState extends State<BmiScreen> {
           Container(
             width: double.infinity,
             child: MaterialButton(onPressed: (){
-
+             Navigator.push(context,
+               N
+             );
             },
               height: 48,
               color: Colors.lightBlueAccent,
