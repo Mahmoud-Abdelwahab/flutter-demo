@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   var emailText = TextEditingController();
+
   var passwordText = TextEditingController();
+
   var formKey = GlobalKey<FormState>();
+
+  bool hidePassword = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,18 +63,25 @@ class LoginScreen extends StatelessWidget {
                   TextFormField(
                     controller: passwordText,
                     keyboardType: TextInputType.visiblePassword,
-                    obscureText: true,
+                    obscureText: hidePassword,
+
                     validator: (value) {
                       if (value!.isEmpty) {
                         return " password is too short";
                       }
                       return null;
                     },
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: "Enter your password",
-                      prefixIcon: Icon(Icons.lock),
-                      suffixIcon: Icon(Icons.remove_red_eye),
-                      border: OutlineInputBorder(),
+                      prefixIcon: const Icon(Icons.lock),
+                      suffixIcon: IconButton(onPressed: () {
+                        hidePassword = ! hidePassword;
+                        setState(() {
+
+                        });
+                      },
+                      icon:  Icon( hidePassword ? Icons.visibility_off : Icons.remove_red_eye)),
+                      border: const OutlineInputBorder(),
                     ),
                   ),
                   const SizedBox(
