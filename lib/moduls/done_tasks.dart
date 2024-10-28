@@ -7,7 +7,7 @@ class Done extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Text(
-            'Tasks'
+            'Done Tasks'
         )
     );
   }

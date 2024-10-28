@@ -16,7 +16,7 @@ class _HomeLayoutState extends State<HomeLayout> {
   List<Widget> screens = [
     Tasks(),
     Done(),
-    ArchievedTasks(),
+    ArcheivedTasks(),
   ];
   @override
   Widget build(BuildContext context) {

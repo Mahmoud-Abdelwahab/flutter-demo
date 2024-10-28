@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ArchievedTasks extends StatelessWidget {
-  const ArchievedTasks({super.key});
+class ArcheivedTasks extends StatelessWidget {
+  const ArcheivedTasks({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Center(
         child: Text(
-            'Tasks'
+            'Archieved Tasks'
         )
     );
   }
